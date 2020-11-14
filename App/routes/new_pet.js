@@ -7,7 +7,7 @@ const pool = new Pool({connectionString:process.env.DATABASE_URL})
 
 /* SQL Query */
 var all_petowner_query = 'SELECT userid FROM PetOwners';
-var petowner_exist_query = 'SELECT 1 FROM PetOwners WHERE userid=$1'
+var petowner_exist_query = 'SELECT 1 FROM PetOwners WHERE userid=$1';
 var all_pets_query = 'SELECT petid FROM Pets';
 var pet_exist_query = 'SELECT 1 FROM Pets WHERE petid=$1';
 var all_categories_query = 'SELECT * FROM PetCategories ORDER BY name';
@@ -115,7 +115,7 @@ router.post('/:userid', function(req, res, next) {
 		var len = str.length;
 		for (var i=0; i<len && isValid; i++) {
 			var c = str.charAt(i);
-			if (!((c < 'z' && c > 'a') || (c = ' '))) {
+			if (!((c < 'z' && c > 'a') || (c === ' ') || (c === '-') || (c === ','))) {
 				isValid = false;
 				categoryErr = "* The pet category should consist of letters and white space only.";
 			}
