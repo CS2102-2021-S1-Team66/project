@@ -36,6 +36,17 @@ var viewCaretakerRouter = require('./routes/view_caretaker')
 
 /* --- Pet Owner -------------- */
 var newPetRouter = require('./routes/new_pet');
+
+
+/*---CareTaker------------------*/
+var salaryRouter = require('./routes/salary');
+
+/*---Admin----------------------*/
+var editsalarysettingsRouter = require('./routes/edit_salary_settings');
+var summaryinfoRouter = require('./routes/summary_info');
+
+var app = express();
+
 var newRequestRouter = require('./routes/new_request');
 var newTransactionRouter = require('./routes/handle_transactions');
 var requestRouter = require('./routes/request');
@@ -47,6 +58,7 @@ var servicesRouter = require('./routes/services');
 /* --- Log in, Register, Edit profile, User profiles */
 var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -117,6 +129,13 @@ app.delete('/logout', (req, res) => {
 })
 
 
+
+/*---Care Taker-----------------*/
+app.use('/salary',salaryRouter);
+
+/*---Admin----------------------*/
+app.use('/edit_salary',editsalarysettingsRouter);
+app.use('/summary_info',summaryinfoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
